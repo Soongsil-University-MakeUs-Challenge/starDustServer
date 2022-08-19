@@ -10,8 +10,8 @@ import javax.sql.DataSource;
 public class UserRepository {
     private JdbcTemplate jdbcTemplate;
 
-//    @Autowired
-//    public void setDataSource(DataSource dataSource) {
-//        this.jdbcTemplate = new JdbcTemplate(dataSource);
-//    }
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 }
