@@ -1,11 +1,12 @@
-package ssumc.stardust.src.user;
+package ssumc.stardust.src.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ssumc.stardust.src.repository.UserRepository;
 import ssumc.stardust.utils.JwtService;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final JwtService jwtService;
