@@ -7,6 +7,7 @@ import ssumc.stardust.src.domain.DustLocationDto;
 import ssumc.stardust.src.repository.DustRepository;
 
 import static ssumc.stardust.config.BaseResponseStatus.DATABASE_ERROR;
+import static ssumc.stardust.config.BaseResponseStatus.INVALID_USER_JWT;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +19,12 @@ public class DustService {
     먼지 위치 정보 업데이트
      */
     public String setLocation (int userId, DustLocationDto dustLocationDto) throws BaseException {
-        try{
+
+        if (!dustRepository.checkUserRole(userId).equals("STAFF")) {
+            throw new BaseException(INVALID_USER_JWT);
+        }
+
+        try {
             int result = dustRepository.setLocation(userId, dustLocationDto);
             if (result == 0) {
                 throw new BaseException(DATABASE_ERROR);
@@ -29,5 +35,7 @@ public class DustService {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+
 
 }

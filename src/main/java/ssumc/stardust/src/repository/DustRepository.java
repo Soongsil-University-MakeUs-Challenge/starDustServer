@@ -27,4 +27,12 @@ public class DustRepository {
         double longitude = dustLocationDto.getLongitude();
         return this.jdbcTemplate.update(query, userId, latitude, longitude, latitude, longitude);
     }
+
+    /**
+     * 유저 역할 조회
+     */
+    public String checkUserRole(int userId) {
+        String query = "select ? from User where userId = ?";
+        return this.jdbcTemplate.queryForObject(query, String.class, userId);
+    }
 }
