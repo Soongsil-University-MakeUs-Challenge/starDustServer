@@ -18,6 +18,10 @@ public enum BaseResponseStatus {
     INVALID_JWT(false, 402, "유효하지 않은 JWT입니다."),
     INVALID_USER_JWT(false, 403, "권한이 없는 유저의 접근입니다."),
 
+    INVALID_RANGE_LONGITUDE(false, 404, "유효하지 않은 경도 값의 범위입니다."),
+    INVALID_RANGE_LATITUDE(false, 405, "유효하지 않은 위도 값의 범위입니다."),
+
+
 
     /**
      * 5XX : Database, Server 오류
@@ -36,5 +40,9 @@ public enum BaseResponseStatus {
         this.isSuccess = isSuccess;
         this.code = code;
         this.message = message;
+    }
+
+    public static BaseResponseStatus of(final String errorName){
+        return BaseResponseStatus.valueOf(errorName);
     }
 }
