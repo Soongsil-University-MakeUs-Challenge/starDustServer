@@ -11,6 +11,7 @@ import static ssumc.stardust.config.BaseResponseStatus.INVALID_USER_JWT;
 import static ssumc.stardust.config.Constant.SuccesssfulUpdate;
 import static ssumc.stardust.config.Constant.staffRole;
 
+
 @Service
 @RequiredArgsConstructor
 public class DustService {
@@ -31,6 +32,7 @@ public class DustService {
             if (result == 0) {
                 throw new BaseException(DATABASE_ERROR);
             }
+
             return SuccesssfulUpdate;
 
         } catch (Exception e) {

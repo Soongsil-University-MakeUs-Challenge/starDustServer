@@ -31,6 +31,7 @@ public class DustRepository {
      */
     public String checkUserRole(int userId) {
         String query = "select role from User where userId = ?";
+
         return this.jdbcTemplate.queryForObject(query, String.class, userId);
     }
 }
