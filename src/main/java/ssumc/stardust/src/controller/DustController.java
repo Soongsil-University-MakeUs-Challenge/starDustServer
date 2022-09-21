@@ -44,8 +44,10 @@ public class DustController {
         }
 
         try {
-            int memberIdByJwt = jwtService.getUserId();
-            String resultStr = dustService.setLocation(memberIdByJwt, dustLocationDto);
+
+            int userIdByJwt = jwtService.getUserId();
+            String resultStr = dustService.setLocation(userIdByJwt, dustLocationDto);
+
             return new BaseResponse<>(resultStr);
 
         } catch (BaseException e) {
