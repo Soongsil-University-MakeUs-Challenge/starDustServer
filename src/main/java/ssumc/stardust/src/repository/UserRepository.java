@@ -36,4 +36,5 @@ public class UserRepository {
         String query = "select exists (select userId from User where userId = ? and role = 'USER')";
         return jdbcTemplate.queryForObject(query, int.class, userId);
     }
+
 }

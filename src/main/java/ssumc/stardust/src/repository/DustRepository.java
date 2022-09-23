@@ -20,19 +20,21 @@ public class DustRepository {
      * 먼지 위치 정보 업테이트
      */
     public int setLocation(int userId, DustLocationDto dustLocationDto) {
-        String query = "insert into Dust(dustId, lat, lon) values (?,?,?) " +
-                "on duplicate key " +
-                "update lat = ?, lon = ? ";
+
+        String query = "update Dust set lat = ?, lon = ? where userId = ?";
         double latitude = dustLocationDto.getLatitude();
         double longitude = dustLocationDto.getLongitude();
-        return this.jdbcTemplate.update(query, userId, latitude, longitude, latitude, longitude);
+        return this.jdbcTemplate.update(query, latitude, longitude, userId);
+
     }
 
     /**
      * 유저 역할 조회
      */
     public String checkUserRole(int userId) {
-        String query = "select ? from User where userId = ?";
+
+        String query = "select role from User where userId = ?";
+
         return this.jdbcTemplate.queryForObject(query, String.class, userId);
     }
 }

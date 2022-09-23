@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ssumc.stardust.config.BaseException;
 import ssumc.stardust.config.BaseResponse;
+
 import ssumc.stardust.src.service.UserService;
 import ssumc.stardust.utils.JwtService;
 
@@ -14,6 +15,7 @@ import ssumc.stardust.utils.JwtService;
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
+
     private final UserService userService;
     private final JwtService jwtService;
 
@@ -32,4 +34,5 @@ public class UserController {
             return new BaseResponse<>(e.getStatus());
         }
     }
+
 }
