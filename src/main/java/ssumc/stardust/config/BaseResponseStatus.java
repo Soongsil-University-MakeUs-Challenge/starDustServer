@@ -10,13 +10,16 @@ public enum BaseResponseStatus {
     SUCCESS(true, 200, "요청에 성공하였습니다."),
 
     /**
-     *4XX  : Request 오류
+     * 4XX  : Request 오류
      */
     // Common
     REQUEST_ERROR(false, 400, "입력값을 확인해주세요."),
     EMPTY_JWT(false, 401, "JWT를 입력해주세요."),
     INVALID_JWT(false, 402, "유효하지 않은 JWT입니다."),
     INVALID_USER_JWT(false, 403, "권한이 없는 유저의 접근입니다."),
+
+    INVALID_RANGE_LONGITUDE(false, 404, "유효하지 않은 경도 값의 범위입니다."),
+    INVALID_RANGE_LATITUDE(false, 405, "유효하지 않은 위도 값의 범위입니다."),
 
 
     /**
@@ -36,5 +39,9 @@ public enum BaseResponseStatus {
         this.isSuccess = isSuccess;
         this.code = code;
         this.message = message;
+    }
+
+    public static BaseResponseStatus of(final String errorName) {
+        return BaseResponseStatus.valueOf(errorName);
     }
 }
