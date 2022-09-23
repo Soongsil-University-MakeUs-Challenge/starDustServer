@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ssumc.stardust.config.BaseException;
 import ssumc.stardust.src.repository.UserRepository;
-import ssumc.stardust.utils.JwtService;
 
 import static ssumc.stardust.config.BaseResponseStatus.DATABASE_ERROR;
 import static ssumc.stardust.config.BaseResponseStatus.INVALID_USER_JWT;

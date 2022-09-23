@@ -26,6 +26,7 @@ public class MapController {
 
     /**
      * 먼지들 조회 API
+     *
      * @return GetMapRes
      */
     @GetMapping("/{university}")

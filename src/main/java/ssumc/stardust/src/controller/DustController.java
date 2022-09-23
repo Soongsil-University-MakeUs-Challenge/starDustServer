@@ -28,6 +28,7 @@ public class DustController {
 
     /**
      * 먼지 위치 정보 업데이트 API
+     *
      * @param dustLocationDto
      * @param br
      * @return BaseResponse
@@ -36,9 +37,9 @@ public class DustController {
 
     @PostMapping("/location")
     @Transactional
-    public BaseResponse<String> setLocation(@Valid @RequestBody DustLocationDto dustLocationDto,  BindingResult br) {
+    public BaseResponse<String> setLocation(@Valid @RequestBody DustLocationDto dustLocationDto, BindingResult br) {
 
-        if(br.hasErrors()){
+        if (br.hasErrors()) {
             String error = br.getAllErrors().get(0).getDefaultMessage();
             return new BaseResponse<>(BaseResponseStatus.of(error));
         }

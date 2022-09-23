@@ -18,7 +18,7 @@ public class MapService {
      * 먼지들 위치 조회
      */
     public GetMapRes getDustInfo(int userId, String university) throws BaseException {
-        try{
+        try {
             return new GetMapRes(mapRepository.getDustInfo(userId, university));
 
         } catch (Exception e) {
