@@ -10,7 +10,7 @@ public enum BaseResponseStatus {
     SUCCESS(true, 200, "요청에 성공하였습니다."),
 
     /**
-     *4XX  : Request 오류
+     * 4XX  : Request 오류
      */
     // Common
     REQUEST_ERROR(false, 400, "입력값을 확인해주세요."),
@@ -20,7 +20,6 @@ public enum BaseResponseStatus {
 
     INVALID_RANGE_LONGITUDE(false, 404, "유효하지 않은 경도 값의 범위입니다."),
     INVALID_RANGE_LATITUDE(false, 405, "유효하지 않은 위도 값의 범위입니다."),
-
 
 
     /**
@@ -42,7 +41,7 @@ public enum BaseResponseStatus {
         this.message = message;
     }
 
-    public static BaseResponseStatus of(final String errorName){
+    public static BaseResponseStatus of(final String errorName) {
         return BaseResponseStatus.valueOf(errorName);
     }
 }

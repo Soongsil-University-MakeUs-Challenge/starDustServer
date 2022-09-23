@@ -21,13 +21,14 @@ public class UserController {
 
     /**
      * 타이머 시작 API
+     *
      * @return String
      */
     @PostMapping("/timer")
     @Transactional
     public BaseResponse<String> startGame() {
 
-        try{
+        try {
             int userIdByJwt = jwtService.getUserId();
             return new BaseResponse<>(userService.startTimer(userIdByJwt));
         } catch (BaseException e) {

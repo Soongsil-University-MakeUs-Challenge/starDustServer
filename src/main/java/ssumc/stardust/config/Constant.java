@@ -4,6 +4,6 @@ package ssumc.stardust.config;
 
 public class Constant {
     public static final String phoneNumRegex = "^010-?([0-9]{3,4})-?([0-9]{4})$";
-    public static final String SuccesssfulUpdate = "성공적으로 업데이트하였습니다.";
+    public static final String SuccessfulUpdate = "성공적으로 업데이트하였습니다.";
     public static final String staffRole = "STAFF";
 }
