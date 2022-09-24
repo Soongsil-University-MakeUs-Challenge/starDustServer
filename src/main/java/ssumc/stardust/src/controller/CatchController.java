@@ -46,10 +46,12 @@ public class CatchController {
 
         try {
             int userIdByJwt = jwtService.getUserId();
+
             String resultStr = catchService.setCatch(userIdByJwt, dustNum);
 
             //userId로 dust 몇 개인지 체크해야함
             if(catchService.countCatch(userIdByJwt, dustNum) == 5){
+
                 //여기 벨리데이션은 어케 잡아야하는지 잘 모르겠음 이미잘잡은건가?
                 String result = catchService.setEndTime(userIdByJwt);
             }
