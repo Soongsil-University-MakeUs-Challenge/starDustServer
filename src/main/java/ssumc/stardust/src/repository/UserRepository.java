@@ -37,4 +37,13 @@ public class UserRepository {
         return jdbcTemplate.queryForObject(query, int.class, userId);
     }
 
+    /**
+     * 시간 중복 등록 조회
+     */
+    public int checkDuplication(int userId) {
+
+        String query = "select exists (select userId from PlayTime where userId = ?)";
+        return jdbcTemplate.queryForObject(query, int.class, userId);
+    }
+
 }
