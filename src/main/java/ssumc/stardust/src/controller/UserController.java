@@ -29,7 +29,10 @@ public class UserController {
     public BaseResponse<String> startGame() {
 
         try {
-            int userIdByJwt = jwtService.getUserId();
+
+            //int userIdByJwt = jwtService.getUserId();
+            int userIdByJwt = 6;
+
             return new BaseResponse<>(userService.startTimer(userIdByJwt));
         } catch (BaseException e) {
             return new BaseResponse<>(e.getStatus());
