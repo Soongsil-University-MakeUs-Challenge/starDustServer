@@ -29,7 +29,7 @@ public class JwtService {
                 .setHeaderParam("type","jwt")//헤더에 type과 jwt를 넣어줌
                 .claim("userId",userId)//그 안의 내용으로 userId를 넣어줌
                 .setIssuedAt(now)//발급된 기간을 넣어줌
-                .setExpiration(new Date(System.currentTimeMillis()+1*(1000*60*60*24)))//토큰 만료기간
+                .setExpiration(new Date(System.currentTimeMillis()+1*(1000*60*60*24*7)))//토큰 만료기간(일주일)
                 .signWith(SignatureAlgorithm.HS256, Secret.JWT_SECRET_KEY)//서명할 때 HS256알고리즘 사용, 시크릿키 담아줌
                 .compact();
     }
