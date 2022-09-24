@@ -46,11 +46,13 @@ public class CatchController {
 
         try {
             int userIdByJwt = jwtService.getUserId();
+
             String resultStr = catchService.setCatch(userIdByJwt, dustNum);
 
             //userId로 dust 몇 개인지 체크해야함
             if(catchService.countCatch(userIdByJwt, dustNum) == 5){
                 //catchService.setEndTime(userIdByJwt)
+
             }
             return new BaseResponse<>(resultStr);
 
