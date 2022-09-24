@@ -33,8 +33,10 @@ public class MapController {
     public BaseResponse<GetMapRes> find(@PathVariable("university") String university) {
 
         try {
+        
             //int userIdByJwt = jwtService.getUserId();
             int userIdByJwt = 6;
+            
             GetMapRes getMapRes = mapService.getDustInfo(userIdByJwt, university);
             return new BaseResponse<>(getMapRes);
 
