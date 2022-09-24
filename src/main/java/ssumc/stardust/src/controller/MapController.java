@@ -13,6 +13,9 @@ import ssumc.stardust.src.domain.GetMapRes;
 import ssumc.stardust.src.service.MapService;
 import ssumc.stardust.utils.JwtService;
 
+import static ssumc.stardust.config.BaseResponseStatus.EMPTY_PATH_VARIABLE;
+import static ssumc.stardust.config.BaseResponseStatus.INVALID_UNIVERSITY;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/map")
@@ -26,10 +29,20 @@ public class MapController {
 
     /**
      * 먼지들 조회 API
+     *
      * @return GetMapRes
      */
     @GetMapping("/{university}")
     public BaseResponse<GetMapRes> find(@PathVariable("university") String university) {
+        //학교 명칭 길이가 0이거나 공백인 경우 에러
+        if (university.isBlank()) {
+            return new BaseResponse<>(EMPTY_PATH_VARIABLE);
+        }
+
+        //학교 명칭 길이가 10이상이거나 맨 마지막 글자가 U로 끝나지 않은 경우 에러
+        if (university.length() >= 10 || Character.toUpperCase(university.charAt(university.length()-1)) != 'U') {
+            return new BaseResponse<>(INVALID_UNIVERSITY);
+        }
 
         try {
             int userIdByJwt = jwtService.getUserId();

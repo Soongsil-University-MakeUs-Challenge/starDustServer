@@ -8,4 +8,5 @@ import lombok.Data;
 public class PostLoginRes {
     private int userId;
     private String userJwt;
+    private boolean isUser;
 }
