@@ -38,12 +38,16 @@ public class UserRepository {
         String query = "select exists (select userId from User where userId = ? and role = 'USER')";
         return jdbcTemplate.queryForObject(query, int.class, userId);
     }
+    
+     /**
+     * 시간 중복 등록 조회
+     */
+    public int checkDuplication(int userId) {
 
+        String query = "select exists (select userId from PlayTime where userId = ?)";
+        return jdbcTemplate.queryForObject(query, int.class, userId);
+    }
 
-//    public int checkNickname(String nickname){
-//        String query = "select exists(select userId from User where nickname = ? and status='ACTIVE')";
-//        return this.jdbcTemplate.queryForObject(query, int.class, nickname);
-//    }
     /**
      * 회원가입
      */

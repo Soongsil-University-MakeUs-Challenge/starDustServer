@@ -22,7 +22,10 @@ public enum BaseResponseStatus {
     INVALID_RANGE_LATITUDE(false, 405, "유효하지 않은 위도 값의 범위입니다."),
     EMPTY_PATH_VARIABLE(false, 406, "Path Variable을 입력해주세요."),
     INVALID_UNIVERSITY(false, 407, "올바른 학교 약칭을 입력해주세요."),
+    DUPLICATED_DATA(false, 408, "이미 존재하는 데이터 입니다."),
 
+    EMPTY_DUSTNUM(false, 410, "잡은 먼지 번호를 입력해주세요."),
+    ALREADY_REQUEST(false, 411, "이미 사용자가 잡은 먼지입니다."),
 
     /**
      * 5XX : Database, Server 오류
