@@ -56,4 +56,21 @@ public class CatchService {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    /**
+     * 유저 endTime 수정하기
+     */
+    public String setEndTime(int userIdByJwt) throws BaseException {
+
+        try {
+            int result = catchRepository.setEndTime(userIdByJwt);
+            if (result == 0) {
+                throw new BaseException(DATABASE_ERROR);
+            }
+            return SuccessfulUpdate;
+
+        } catch (Exception e) {
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
 }

@@ -43,4 +43,13 @@ public class CatchRepository {
 
         return this.jdbcTemplate.queryForObject(query, int.class, userIdByJwt);
     }
+
+    /**
+     * 끝나는 시간 설정하기
+     */
+    public int setEndTime(int userIdByJwt){
+        String query = "update PlayTime set endTime = now() where userId = ?";
+
+        return this.jdbcTemplate.update(query, userIdByJwt);
+    }
 }
