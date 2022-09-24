@@ -45,8 +45,8 @@ public class CatchController {
 //        }
 
         try {
-            //int userIdByJwt = jwtService.getUserId();
-            int userIdByJwt = 1;
+            int userIdByJwt = jwtService.getUserId();
+
             String resultStr = catchService.setCatch(userIdByJwt, dustNum);
 
             //userId로 dust 몇 개인지 체크해야함
