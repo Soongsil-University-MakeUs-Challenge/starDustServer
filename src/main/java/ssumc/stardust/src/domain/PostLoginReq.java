@@ -5,8 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import static ssumc.stardust.config.Constant.nicknameRegex;
-import static ssumc.stardust.config.Constant.phoneNumRegex;
+import static ssumc.stardust.config.Constant.*;
 
 @Data
 public class PostLoginReq {
@@ -17,4 +16,8 @@ public class PostLoginReq {
     @NotBlank(message = "EMPTY_PHONENUMBER")
     @Pattern(regexp = phoneNumRegex, message = "INVALID_PHONENUMBER")
     private String phoneNum;
+
+    @NotBlank(message = "EMPTY_UNIVCODE")
+    @Pattern(regexp = univCodeRegex, message = "INVALID_UNIV_CODE")
+    private String univCode;
 }

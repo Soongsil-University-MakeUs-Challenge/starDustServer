@@ -4,17 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ssumc.stardust.config.BaseException;
+import ssumc.stardust.src.domain.PostLoginReq;
 import ssumc.stardust.src.domain.PostLoginRes;
-import ssumc.stardust.src.domain.PostSignUpReq;
-import ssumc.stardust.src.domain.PostSignUpRes;
-import ssumc.stardust.config.BaseException;
+import ssumc.stardust.src.domain.UserInfoDto;
 import ssumc.stardust.src.repository.UserRepository;
 import ssumc.stardust.utils.JwtService;
 
 import static ssumc.stardust.config.BaseResponseStatus.DATABASE_ERROR;
 import static ssumc.stardust.config.BaseResponseStatus.INVALID_USER_JWT;
-
-import static ssumc.stardust.config.BaseResponseStatus.*;
 
 @Service
 @RequiredArgsConstructor
@@ -40,30 +37,25 @@ public class UserService {
     }
 
     /**
-     * 회원가입
+     * 회원가입 및 로그인
      */
     @Transactional(rollbackFor = Exception.class)
-    public PostSignUpRes createUser(PostSignUpReq postSignupReq) throws BaseException {
-//        //닉네임 중복검사
-//        if(userRepository.checkNickname(postSignupReq.getNickname()) == 1){
-//            throw new BaseException(DUPLICATED_NICKNAME);
-//        }
-        try{
+    public PostLoginRes createUser(PostLoginReq postSignupReq) throws BaseException {
+        boolean isUser = true;
+
+        //존재하는 유저라면 로그인
+        if(userRepository.existUser(postSignupReq) > 0) {
+            UserInfoDto user = userRepository.getUser(postSignupReq);
+            if(user.getRole().equals("STAFF")) isUser = false;
+            return new PostLoginRes(jwtService.createJwt(user.getUserId()), isUser);
+        }
+
+        //존재하지 않으면 회원가입
+        try {
             int userId = userRepository.createUser(postSignupReq);
-            String userJwt = jwtService.createJwt(userId);
-            return new PostSignUpRes(userId, userJwt);
-        } catch (Exception e){
+            return new PostLoginRes(jwtService.createJwt(userId), true);
+        } catch (Exception e) {
             throw new BaseException(DATABASE_ERROR);
         }
     }
-
-//    //자동 로그인
-//    public PostLoginRes autoLogIn(int userId, String jwt) throws BaseException{
-//        try{
-//            User user = userRepository.getUser(userId);
-//            return new PostLoginRes(user.getUserId(), jwt, user.getProfileUrl());
-//        } catch (Exception e) {
-//            throw new BaseException(DATABASE_ERROR);
-//        }
-//    }
 }

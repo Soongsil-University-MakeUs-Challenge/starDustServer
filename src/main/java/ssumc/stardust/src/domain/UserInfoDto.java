@@ -1,12 +1,15 @@
 package ssumc.stardust.src.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
-public class PostSignUpRes {
+public class UserInfoDto {
     private int userId;
     private String userJwt;
+    private String phoneNum;
+    private String role;
 }

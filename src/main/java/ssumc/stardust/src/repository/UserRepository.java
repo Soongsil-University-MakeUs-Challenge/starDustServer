@@ -4,7 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import ssumc.stardust.src.domain.PostSignUpReq;
+import ssumc.stardust.src.domain.PostLoginReq;
+import ssumc.stardust.src.domain.UserInfoDto;
 
 import javax.sql.DataSource;
 
@@ -46,14 +47,35 @@ public class UserRepository {
     /**
      * 회원가입
      */
-    public int createUser(PostSignUpReq postSignupReq){
+    public int createUser(PostLoginReq postSignupReq){
         String query = "insert into User(nickname, phone, university) value (?, ?, ?)";
         Object[] params = new Object[]{postSignupReq.getNickname(), postSignupReq.getPhoneNum(), postSignupReq.getUnivCode()};
         this.jdbcTemplate.update(query, params);
 
         String lastInsertIdQuery = "select last_insert_id()";
-        System.out.println("last_insert_id: " + this.jdbcTemplate.queryForObject((lastInsertIdQuery), int.class));
         return this.jdbcTemplate.queryForObject(lastInsertIdQuery, int.class);
     }
 
+    /**
+     * 유저 exist 조회
+     */
+    public int existUser(PostLoginReq postLoginReq) {
+        String query = "select exists(select userId from User where nickname = ? and phone = ? and university = ? and status='ACTIVE')";
+        Object[] params = new Object[]{postLoginReq.getNickname(), postLoginReq.getPhoneNum(), postLoginReq.getUnivCode()};
+        return jdbcTemplate.queryForObject(query, int.class, params);
+    }
+
+    /**
+     * 유저 조회
+     */
+    public UserInfoDto getUser(PostLoginReq postLoginReq) {
+        String query = "select userId, nickname, phone, role from User where nickname = ? and phone = ? and university = ? and status='ACTIVE'";
+        return this.jdbcTemplate.queryForObject(query,
+                (rs, rowNum) -> new UserInfoDto(
+                        rs.getInt("userId"),
+                        rs.getString("nickname"),
+                        rs.getString("phone"),
+                        rs.getString("role")
+                ), postLoginReq.getNickname(), postLoginReq.getPhoneNum(), postLoginReq.getUnivCode());
+    }
 }
