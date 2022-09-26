@@ -18,9 +18,9 @@ public class RankingRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public List<RankerInfoDto> getRankerList(int page, int size) {
+    public List<RankerInfoDto> getRankerList(String code, int page, int size) {
         String query = "select nickname, right(phone, 4) as lastNum, TIMEDIFF(endTime, startTime) as playTime from PlayTime join User U on U.userId = PlayTime.userId " +
-                "where role = 'USER' and status = 'ACTIVE' " +
+                "where role = 'USER' and university = ? and status = 'ACTIVE' " +
                 "order by playTime " +
                 "limit ? offset ?";
         return jdbcTemplate.query(query,
@@ -28,6 +28,6 @@ public class RankingRepository {
                         rs.getString("nickname"),
                         rs.getString("lastNum"),
                         rs.getString("playTime")
-                )), size, (page-1)*size);
+                )), code, size, (page-1)*size);
     }
 }
