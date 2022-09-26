@@ -7,12 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ssumc.stardust.config.BaseException;
 import ssumc.stardust.config.BaseResponse;
 import ssumc.stardust.src.domain.GetRankRes;
-import ssumc.stardust.src.domain.RankerInfoDto;
 import ssumc.stardust.src.service.RankingService;
-import ssumc.stardust.utils.JwtService;
-
-import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
