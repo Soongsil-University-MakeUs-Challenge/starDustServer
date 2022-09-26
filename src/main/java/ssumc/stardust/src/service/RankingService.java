@@ -24,9 +24,9 @@ public class RankingService {
     /**
      * 랭킹 조회
      */
-    public GetRankRes getRanking(int page, int size) throws BaseException {
+    public GetRankRes getRanking(String univCode, int page, int size) throws BaseException {
         try {
-            return new GetRankRes(rankingRepository.getRankerList(page, size));
+            return new GetRankRes(rankingRepository.getRankerList(univCode, page, size));
         } catch (Exception e) {
             throw new BaseException(DATABASE_ERROR);
         }
