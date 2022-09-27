@@ -46,9 +46,7 @@ public class MapController {
 
         try {
         
-            //int userIdByJwt = jwtService.getUserId();
-            int userIdByJwt = 6;
-            
+            int userIdByJwt = jwtService.getUserId();
             GetMapRes getMapRes = mapService.getDustInfo(userIdByJwt, university);
             return new BaseResponse<>(getMapRes);
 
