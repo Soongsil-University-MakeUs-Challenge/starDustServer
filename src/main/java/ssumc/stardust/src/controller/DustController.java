@@ -45,8 +45,7 @@ public class DustController {
         }
 
         try {
-//            int userIdByJwt = jwtService.getUserId();
-            int userIdByJwt = 6;
+            int userIdByJwt = jwtService.getUserId();
             String resultStr = dustService.setLocation(userIdByJwt, dustLocationDto);
 
             return new BaseResponse<>(resultStr);

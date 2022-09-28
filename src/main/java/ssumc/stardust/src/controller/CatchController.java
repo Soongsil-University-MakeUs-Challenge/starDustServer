@@ -2,6 +2,7 @@ package ssumc.stardust.src.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ssumc.stardust.config.BaseException;
 import ssumc.stardust.config.BaseResponse;
@@ -32,6 +33,7 @@ public class CatchController {
      */
 
     @PostMapping("/dust")
+    @Transactional
     public BaseResponse<String> createCatch(@Valid @RequestBody CatchDto dustNum){
 
         //dustNum 없는 경우 처리 벨리데이션
