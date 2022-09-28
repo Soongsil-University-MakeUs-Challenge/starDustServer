@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ssumc.stardust.config.BaseException;
 import ssumc.stardust.src.domain.GetRankRes;
 import ssumc.stardust.src.repository.RankingRepository;
-import ssumc.stardust.utils.JwtService;
 import static ssumc.stardust.config.BaseResponseStatus.*;
 
 @Service
