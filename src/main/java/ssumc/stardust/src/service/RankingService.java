@@ -3,23 +3,15 @@ package ssumc.stardust.src.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ssumc.stardust.config.BaseException;
-import ssumc.stardust.src.domain.GetMapRes;
 import ssumc.stardust.src.domain.GetRankRes;
-import ssumc.stardust.src.domain.RankerInfoDto;
 import ssumc.stardust.src.repository.RankingRepository;
-import ssumc.stardust.src.repository.UserRepository;
-import ssumc.stardust.utils.JwtService;
-
-import java.util.List;
-
-import static ssumc.stardust.config.BaseResponseStatus.DATABASE_ERROR;
+import static ssumc.stardust.config.BaseResponseStatus.*;
 
 @Service
 @RequiredArgsConstructor
 public class RankingService {
 
     private final RankingRepository rankingRepository;
-    private final JwtService jwtService;
 
     /**
      * 랭킹 조회
