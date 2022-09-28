@@ -18,10 +18,10 @@ public class RankingRepository {
     }
 
     public List<RankerInfoDto> getRankerList(String code, int page, int size) {
-        String query = "select nickname, right(phone, 4) as lastNum, TIMEDIFF(endTime, startTime) as playTime from PlayTime join User U on U.userId = PlayTime.userId " +
-                "where role = 'USER' and university = ? and status = 'ACTIVE' " +
-                "order by playTime " +
-                "limit ? offset ?";
+        String query = "select nickname, right(phone, 4) as lastNum, TIMEDIFF(endTime, startTime) as playTime " +
+                "from PlayTime inner join User U on U.userId = PlayTime.userId " +
+                "where role = 'USER' and university = ? and status = 'ACTIVE' and PlayTime.endTime is not null " +
+                "order by playTime limit ? offset ?";
         return jdbcTemplate.query(query,
                 ((rs, rowNum) -> new RankerInfoDto(
                         rs.getString("nickname"),

@@ -9,6 +9,7 @@ import ssumc.stardust.config.BaseResponse;
 import ssumc.stardust.src.domain.GetRankRes;
 import ssumc.stardust.src.service.RankingService;
 
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/ranking")
